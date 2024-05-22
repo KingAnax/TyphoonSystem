@@ -28,7 +28,7 @@ def login():
 
 # 注册蓝图
 app.register_blueprint(user_query_blueprint, url_prefix='/user/query')
-app.register_blueprint(user_news_blueprint, url_prefix='/user/news')
+app.register_blueprint(user_news_blueprint, url_prefix='/user/change')
 app.register_blueprint(user_chart_blueprint, url_prefix='/user/chart')
 app.register_blueprint(user_blueprint, url_prefix='/user')
 

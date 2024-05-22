@@ -5,8 +5,7 @@
     <meta content = "width = device-width, initial-scale = 1" name = "viewport">
     <meta content = "" name = "description">
     <meta content = "" name = "author">
-    <link href = "/static/plugins/images/favicon.png" rel = "icon" sizes = "16x16" type = "image/png">
-    <title>TJBikes</title>
+    <title>typhoon</title>
     <!-- Bootstrap Core CSS -->
     <link href = "/static/bootstrap/dist/css/bootstrap.min.css" rel = "stylesheet">
     <!-- Menu CSS -->
@@ -33,64 +32,54 @@
     </div>
 
     <div id = "wrapper">
-        <!-- 导航栏标签 -->
+        <!-- Navigation -->
         <nav class = "navbar navbar-default navbar-static-top m-b-0">
-            <!-- 导航栏头部 -->
-            <div class = "navbar-header">
-                <a class = "navbar-toggle hidden-sm hidden-md hidden-lg " data-target = ".navbar-collapse" data-toggle = "collapse" href = "javascript:void(0)">
-                    <i class = "fa fa-bars"></i>
-                </a>
-                <div class = "top-left-part">
-                    <a href = "/user/index"><b><img alt = "home" src = "/static/images/logoko1.png"></b><span class = "hidden-xs" style = "display: none;"></span></a>
-                </div>
-                <ul class = "nav navbar-top-links navbar-right pull-right">
-                    <li>
-                        <a class = "profile-pic" href = "#">
-                            <img alt = "user-img" class = "img-circle" src = "/static/plugins/images/users/IU.jpg" width = "64">
-                            <b class = "hidden-xs"> </b>
-                        </a>
-                    </li>
-                </ul>
+            <div class = "navbar-header" style="text-align: center; font-size: 30px;"><a class = "navbar-toggle hidden-sm hidden-md hidden-lg " href = "javascript:void(0)" data-toggle = "collapse" data-target = ".navbar-collapse"><i class = "fa fa-bars"></i></a>
+                <div class = "top-left-part"><a href = "/user/index">
+                    <b>
+                        <img src = "/static/images/1.png" alt = "home">
+                    </b>
+                    <span class = "hidden-xs" style = "display: none;"></span></a></div>
+                台风信息系统
             </div>
         </nav>
-        <!-- 左部标签导航 -->
+        <!-- Left navbar-header -->
         <div class = "navbar-default sidebar" role = "navigation" style = "overflow: visible;">
             <div class = "slimScrollDiv" style = "position: relative; overflow: visible; width: auto; height: 100%;"><div class = "sidebar-nav navbar-collapse slimscrollsidebar" style = "overflow: visible hidden; width: auto; height: 100%;">
                 <ul class = "nav in" id = "side-menu">
-                    <li style = "padding: 10px 0 0;">
-                        <a href = "/user/index" class = "waves-effect active"><i class = "fa fa-home fa-fw" aria-hidden = "true"></i><span class = "hide-menu">主页</span></a>
+                    <li id = "drawchart">
+                        <a href = "#" class = "waves-effect"><i class = "fa fa-fw" aria-hidden = "true"></i><span class = "hide-menu">图表绘制</span></a>
                     </li>
-                    <li>
-                        <a href = "/" class = "waves-effect"><i class = "fa fa-key fa-fw" aria-hidden = "true"></i><span class = "hide-menu">登录</span></a>
-                    </li>
-                    <li>
-                        <a href = "/register" class = "waves-effect"><i class = "fa fa-bars fa-fw" aria-hidden = "true"></i><span class = "hide-menu">注册</span></a>
-                    </li>
-                    <li>
-                        <a href = "/logout" class = "waves-effect"><i class = "fa fa-bell fa-fw" aria-hidden = "true"></i><span class = "hide-menu">登出</span></a>
-                    </li>
-                    <li id = "BikeManage">
-                        <a href = "#" class = "waves-effect"><i class = "fa fa-car fa-fw" aria-hidden = "true"></i><span class = "hide-menu">我的单车</span></a>
-                    </li>
-                    <div id = "bike_manage" style = "display:none;">
+                    <div id = "draw_chart" style = "display:none;text-align: center">
                         <ul>
-                            <li align = "center"><a class = "waves-effect" href = "/user/bike/rent"><span class = "hide-menu">单车使用</span></a></li>
-                            <li align = "center"><a class = "waves-effect" href = "/user/bike/return"><span class = "hide-menu">单车归还</span></a></li>
-                            <li align = "center"><a class = "waves-effect" href = "/user/bike/query"><span class = "hide-menu">单车查询</span></a></li>
-                            <li align = "center"><a class = "waves-effect" href = "/user/bike/info"><span class = "hide-menu">我的记录</span></a></li>
+                            <li align = "center"><a class = "waves-effect" href = "/user/chart/pie"><span class = "hide-menu">级别图</span></a></li>
+                            <li align = "center"><a class = "waves-effect" href = "/user/chart/map"><span class = "hide-menu">轨迹图</span></a></li>
                         </ul>
                     </div>
-                    <li>
-                        <a href = "/user/news/main" class = "waves-effect"><i class = "fa fa-file-text-o fa-fw" aria-hidden = "true"></i><span class = "hide-menu">资讯查看</span></a>
+                    <li id = "BikeManage">
+                        <a href = "#" class = "waves-effect"><i class = "fa fa-fw" aria-hidden = "true"></i><span class = "hide-menu">数据查询</span></a>
                     </li>
-                    <li>
-                        <a href = "/user/hot/main" class = "waves-effect"><i class = "fa fa-globe fa-fw" aria-hidden = "true"></i><span class = "hide-menu">单车热度</span></a>
+                    <div id = "bike_manage" style = "display:none;text-align: center">
+                        <ul>
+                            <li align = "center"><a class = "waves-effect" href = "/user/query/basic"><span class = "hide-menu">基础信息</span></a></li>
+                            <li align = "center"><a class = "waves-effect" href = "/user/query/addition"><span class = "hide-menu">附加信息</span></a></li>
+                            <li align = "center"><a class = "waves-effect" href = "/user/query/move"><span class = "hide-menu">轨迹信息</span></a></li>
+                        </ul>
+                    </div>
+                    <li id = "infochange">
+                        <a href = "#" class = "waves-effect"><i class = "fa fa-fw" aria-hidden = "true"></i><span class = "hide-menu">添加数据</span></a>
                     </li>
+                    <div id = "info_change" style = "display:none;text-align: center">
+                        <ul>
+                            <li align = "center"><a class = "waves-effect" href = "/user/news/news_create"><span class = "hide-menu">添加台风</span></a></li>
+                        </ul>
+                    </div>
                 </ul>
             </div>
             <div class = "slimScrollBar" style = "background: rgb(220, 220, 220); width: 0px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 1775px;"></div>
             <div class = "slimScrollRail" style = "width: 0px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
         </div>
+        <!-- Left navbar-header end -->
 
         <!-- 页面内容 -->
         <div id = "page-wrapper" style = "min-height: 692px;">
@@ -98,12 +87,7 @@
                 <div class = "row bg-title">
                     <div class="row">
                         <div class = "col-lg-11 col-md-11 col-sm-6 col-xs-6">
-                            <h4 class = "page-title">资讯管理</h4>
-                        </div>
-                        <div class = "col-lg-1 col-md-1 col-sm-6 col-xs-6">
-                            <a href="/user/news/main">
-                                <input class = "btn btn-warning" name = "mysubmit"  type = "submit" value = "返回">
-                            </a>
+                            <h4 class = "page-title">添加台风信息</h4>
                         </div>
                     </div>
                 </div>
@@ -116,18 +100,17 @@
                                 <!-- 文章标题 -->
                                 <div class="form-group">
                                     <!-- 标签 -->
-                                    <label for="title">资讯标题</label>
+                                    <label for="title">台风编号</label>
                                     <!-- 文本框 -->
-                                    <input type="text" class="form-control" id="title" name="title">
-                                </div>
-                                <!-- 文章正文 -->
-                                <div class="form-group">
-                                    <label for="body">资讯正文</label>
-                                    <!-- 文本区域 -->
-                                    <textarea type="text" class="form-control" id="body" name="body" rows="12"></textarea>
+                                    <input type="text" class="form-control" id="title" name="ty_no">
+                                                                        <!-- 标签 -->
+                                    <label for="title">台风名称</label>
+                                    <!-- 文本框 -->
+                                    <input type="text" class="form-control" id="title" name="name">
+                                                                        <!-- 标签 -->
                                 </div>
                                 <!-- 提交按钮 -->
-                                <input type = "submit" class="btn btn-primary" value = "提交资讯">
+                                <input type = "submit" class="btn btn-primary" value = "提交">
                             </form>
                         </div>
                     </div>
@@ -136,7 +119,6 @@
             </div>
 
         </div>
-        <footer class = "footer text-center"> 2021 © 庄镇华</footer>
     </div>
     <!-- Wrapper end-->
 
@@ -187,6 +169,16 @@
         $(document).ready(function(){
             $('#BikeManage').on('click',function(){
                 $('#bike_manage').fadeToggle(300);
+            });
+        });
+        $(document).ready(function(){
+            $('#drawchart').on('click',function(){
+                $('#draw_chart').fadeToggle(300);
+            });
+        });
+        $(document).ready(function(){
+            $('#infochange').on('click',function(){
+                $('#info_change').fadeToggle(300);
             });
         });
     </script>

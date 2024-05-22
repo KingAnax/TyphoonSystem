@@ -32,7 +32,7 @@ class MySQLTools():
         self.conn = pymysql.connect(host=host, user=user, password=password, db=db, charset=charset)
         self.cur = self.conn.cursor()
 
-    # 单车品牌占比统计
+    # 占比统计
     def numStatic(self):
         sqlstr = "select count(*) as cnt from addition_info where rank = 'TD';"
         self.cur.execute(sqlstr)
@@ -56,30 +56,12 @@ class MySQLTools():
         return int(n1 / n * 100), int(n2 / n * 100), int(n3 / n * 100), int(n4 / n * 100), int(n5 / n * 100), int(
             n6 / n * 100)
 
-    # 时间序列统计
-    def timeDataStatic(self):
-        user_list, bike_list, rent_list, news_list = [], [], [], []
-        years = [20, 21, 21, 21, 21, 21, 21]
-        months = [12, 1, 2, 3, 4, 5, 6, 7]
-        for i in range(len(years)):
-            sqlstr = f"select count(*) as cnt from users where user_time >= '20{years[i]}-{months[i]:02d}-01 00:00:00' and user_time < '20{years[i]}-{months[i + 1]:02d}-01 00:00:00'"
-            self.cur.execute(sqlstr)
-            user_list.append(self.cur.fetchone()[0])
-        for i in range(len(years)):
-            sqlstr = f"select count(*) as cnt from query where bike_time >= '20{years[i]}-{months[i]:02d}-01 00:00:00' and bike_time < '20{years[i]}-{months[i + 1]:02d}-01 00:00:00'"
-            self.cur.execute(sqlstr)
-            bike_list.append(self.cur.fetchone()[0])
-        for i in range(len(years)):
-            sqlstr = f"select count(*) as cnt from rent where rent_time >= '20{years[i]}-{months[i]:02d}-01 00:00:00' and rent_time < '20{years[i]}-{months[i + 1]:02d}-01 00:00:00'"
-            self.cur.execute(sqlstr)
-            rent_list.append(self.cur.fetchone()[0])
-        for i in range(len(years)):
-            sqlstr = f"select count(*) as cnt from news where news_created >= '20{years[i]}-{months[i]:02d}-01 00:00:00' and news_created < '20{years[i]}-{months[i + 1]:02d}-01 00:00:00'"
-            self.cur.execute(sqlstr)
-            news_list.append(self.cur.fetchone()[0])
-        return user_list, bike_list, rent_list, news_list
+    def addTy(self, ty_no, name):
+        sqlstr = f"insert into basic_info(no, name) values('{ty_no}','{name}');"
+        self.cur.execute(sqlstr)
+        self.conn.commit()
+        return
 
-    # 所有单车信息
     def basicInfo(self):
         sqlstr = f"select * from basic_info "
         self.cur.execute(sqlstr)
@@ -96,23 +78,12 @@ class MySQLTools():
         self.cur.execute(sqlstr)
         return sql_fetch_json(self.cur)
 
-    # 单车查询
-    def bike_userAll(self, ty_no):
-        sqlstr = f"select rent.user_id, rent.bike_id, rent.rent_time, retur.return_time " \
-                 f"from rent left outer join retur " \
-                 f"on rent._id_ = retur._id_ and rent.user_id = retur.user_id and rent.bike_id = retur.bike_id " \
-                 f"where rent.bike_id = '{ty_no}' " \
-                 f"order by rent.rent_time asc;"
-        self.cur.execute(sqlstr)
-        return sql_fetch_json(self.cur)
-
     # 台风编号查询
     def ty_min(self):
         sqlstr = f"select no, name " \
                  f"from basic_info; "
         self.cur.execute(sqlstr)
         return sql_fetch_json(self.cur)
-
 
     # 绘制轨迹图
     def drawMap(self, tynm):
