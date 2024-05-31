@@ -1,9 +1,9 @@
 from flask import Flask, render_template
 from tools import MySQLTools
 
-from user.bike import user_query as user_query_blueprint
-from user.news import user_news as user_news_blueprint
-from user.hot import user_chart as user_chart_blueprint
+from user.query import user_query as user_query_blueprint
+from user.change import user_news as user_news_blueprint
+from user.chart import user_chart as user_chart_blueprint
 from user import user as user_blueprint
 
 # 初始化数据库

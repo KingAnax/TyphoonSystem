@@ -24,6 +24,7 @@ def move():
 @user_query.route('/getbd', methods=['POST', 'GET'])
 def get_basic_data():
     if request.method == 'GET':
+        print(1)
         info = request.values
         limit = info.get('limit', 10)
         offset = info.get('offset', 0)

@@ -32,6 +32,7 @@ class MySQLTools():
         self.conn = pymysql.connect(host=host, user=user, password=password, db=db, charset=charset)
         self.cur = self.conn.cursor()
 
+
     # 占比统计
     def numStatic(self):
         sqlstr = "select count(*) as cnt from addition_info where rank = 'TD';"
@@ -60,22 +61,28 @@ class MySQLTools():
         sqlstr = f"insert into basic_info(no, name) values('{ty_no}','{name}');"
         self.cur.execute(sqlstr)
         self.conn.commit()
+        sqlstr = f"select * from basic_info "
+        self.cur.execute(sqlstr)
+        self.conn.commit()
         return
 
     def basicInfo(self):
         sqlstr = f"select * from basic_info "
         self.cur.execute(sqlstr)
+        self.conn.commit()
         return sql_fetch_json(self.cur)
 
     def additionInfo(self):
         sqlstr = f"select * from addition_info "
         self.cur.execute(sqlstr)
+        self.conn.commit()
         return sql_fetch_json(self.cur)
 
     def moveInfo(self, ty_no):
         sqlstr = f"select * from move_info " \
                  f"where ty_no = '{ty_no}' "
         self.cur.execute(sqlstr)
+        self.conn.commit()
         return sql_fetch_json(self.cur)
 
     # 台风编号查询
@@ -83,7 +90,9 @@ class MySQLTools():
         sqlstr = f"select no, name " \
                  f"from basic_info; "
         self.cur.execute(sqlstr)
+        self.conn.commit()
         return sql_fetch_json(self.cur)
+
 
     # 绘制轨迹图
     def drawMap(self, tynm):
